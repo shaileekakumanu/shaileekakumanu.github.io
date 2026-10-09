@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shailee Kakumanu — Portfolio</title>
+<meta name="description" content="Personal portfolio of Shailee Kakumanu, Computer Science student and web developer.">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Custom styles -->
+<style>
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+:root{
+  --paper:    #F6F3EC;
+  --paper-alt:#EFEADF;
+  --ink:      #1C2321;
+  --ink-soft: #4A544E;
+  --accent:   #2F6F63;   /* deep teal   - primary  */
+  --brass:    #C98A3E;   /* warm brass  - highlight */
+  --line:     #D8D2C2;
+  --danger:   #B3402A;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "Inter", -apple-system, Segoe UI, Roboto, sans-serif;
+  --radius: 4px;
+  --container-max: 1120px;
+  --shadow-sm: 0 4px 14px rgba(28, 35, 33, .08);
+  --shadow-md: 0 14px 30px rgba(28, 35, 33, .14);
+  --shadow-brass: 0 14px 30px rgba(201, 138, 62, .22);
+}
+
+[data-theme="dark"]{
+  --paper:    #14181A;
+  --paper-alt:#1B211F;
+  --ink:      #ECE7DC;
+  --ink-soft: #B6BDB6;
+  --line:     #303934;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  transition: background .25s ease, color .25s ease;
+}
+
+.container{ max-width: var(--container-max); }
+
+h1, h2, h3, .hero-name{
+  font-family: var(--font-display);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+p{ max-width: 62ch; }
+
+a{ color: var(--accent); }
+
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--ink); color:var(--paper);
+  padding:.6rem 1rem; z-index:2000; border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus{ left:0; }
+
+:focus-visible{
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+#mainNav{
+  background: rgba(246,243,236,.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+  padding: .9rem 0;
+  transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+[data-theme="dark"] #mainNav{ background: rgba(20,24,26,.92); }
+#mainNav.is-scrolled{ box-shadow: var(--shadow-sm); border-bottom-color: transparent; }
+
+.navbar-brand{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--ink) !important;
+}
+.brand-dot{ color: var(--brass); }
+
+.navbar-nav .nav-link{
+  color: var(--ink-soft) !important;
+  font-size: .92rem;
+  margin: 0 .4rem;
+  padding: .3rem .2rem !important;
+  border-bottom: 2px solid transparent;
+}
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active-link{
+  color: var(--ink) !important;
+  border-bottom-color: var(--brass);
+}
+
+.theme-toggle{
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  margin-left: .75rem;
+  display:inline-flex; align-items:center; justify-content:center;
+  cursor: pointer;
+}
+.theme-toggle:hover{ border-color: var(--brass); color: var(--brass); }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-primary-custom{
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: .6rem 1.3rem;
+  font-weight: 500;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.btn-primary-custom:hover{
+  background: #26584f;
+  color:#fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-outline-custom{
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: .6rem 1.3rem;
+  font-weight: 500;
+  transition: background .2s ease, color .2s ease, transform .2s ease, border-color .2s ease;
+}
+.btn-outline-custom:hover{
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-2px);
+  border-color: var(--ink);
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero{
+  padding: 8.5rem 0 4.5rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: -8px -8px;
+}
+[data-theme="dark"] .hero{ background-image: radial-gradient(var(--line) 1px, transparent 1px); opacity: 1; }
+.hero-eyebrow{
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+.hero-name{
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: .6rem;
+}
+.hero-tagline{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--brass);
+  min-height: 1.8em;
+}
+.cursor{
+  display:inline-block; width:2px; height:1.1em; background:var(--brass);
+  margin-left:2px; vertical-align:-2px;
+  animation: blink 1s step-end infinite;
+}
+@media (prefers-reduced-motion: reduce){ .cursor{ animation:none; } }
+
+/* Scroll-reveal */
+.reveal{ opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible{ opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity: 1; transform: none; transition: none; }
+}
+@keyframes blink{ 50%{ opacity:0; } }
+
+.hero-lede{ color: var(--ink-soft); margin: 1rem 0 1.6rem; }
+.hero-actions{ display:flex; gap:.8rem; flex-wrap:wrap; }
+
+.hero-card{
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.hero-card:hover{
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brass);
+}
+.hero-card-row{
+  display:flex; justify-content:space-between; align-items:baseline;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: .7rem;
+  font-size: .95rem;
+}
+.hero-card-row:last-child{ border-bottom:0; padding-bottom:0; }
+.hero-card-row span{ color: var(--ink-soft); }
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.section{ padding: 5rem 0; }
+.section-alt{ background: var(--paper-alt); }
+.section-index{
+  font-family: var(--font-display);
+  color: var(--brass);
+  font-size: .95rem;
+  margin-bottom: .2rem;
+}
+.section-title{
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 2rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid var(--brass);
+  color: var(--accent);
+}
+
+.card-panel{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+[data-theme="dark"] .card-panel{ background: var(--paper-alt); }
+.quote-widget:hover{
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--brass);
+}
+
+.about-facts{ display:flex; flex-direction:column; gap:.6rem; margin-top:1.2rem; }
+.about-facts i{ color: var(--accent); margin-right:.5rem; width:1.2em; }
+
+.quote-text{
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  border-left: 3px solid var(--brass);
+  padding-left: .9rem;
+  margin: 0 0 .3rem;
+  min-height: 3.2em;
+}
+.quote-author{ color: var(--ink-soft); font-size: .9rem; margin-bottom: 1rem; }
+
+/* Education table */
+#eduTable th{
+  font-family: var(--font-display);
+  font-weight: 600;
+  border-bottom: 2px solid var(--brass);
+  background: transparent;
+}
+#eduTable td, #eduTable th{ border-color: var(--line); color: var(--brass); }
+#eduTable tbody tr{ transition: background .2s ease; }
+#eduTable tbody tr:hover{ background: var(--paper-alt); }
+[data-theme="dark"] #eduTable tbody tr:hover{ background: var(--paper); }
+
+/* Skills grid — CSS Grid based cards */
+#skillsGrid{ display:flex; flex-wrap:wrap; }
+.skill-card{
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.3rem;
+  height: 100%;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+[data-theme="dark"] .skill-card{ background: var(--paper); }
+.skill-card:hover{
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--accent);
+}
+.skill-card:hover .skill-bar-fill{ background: var(--brass); }
+.skill-card-head{ display:flex; justify-content:space-between; margin-bottom:.5rem; font-size:.9rem; }
+.skill-bar-track{ height:6px; background:var(--line); border-radius:3px; overflow:hidden; }
+.skill-bar-fill{ height:100%; background:var(--accent); border-radius:3px; width:0; transition:width 1s ease, background .25s ease; }
+
+/* Projects */
+.filter-bar{ display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:2rem; }
+.filter-btn{
+  border:1px solid var(--line); background:transparent; color:var(--ink-soft);
+  border-radius: 999px; padding:.35rem 1rem; font-size:.85rem; cursor:pointer;
+}
+.filter-btn:hover{ border-color: var(--accent); color: var(--accent); }
+.filter-btn.active{ background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+.project-card{
+  position: relative;
+  overflow: hidden;
+  border:1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper); height:100%; display:flex; flex-direction:column;
+  padding: 1.5rem 1.4rem 1.4rem;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+[data-theme="dark"] .project-card{ background: var(--paper-alt); }
+.project-card::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:3px;
+  background: var(--accent); transform: scaleX(0); transform-origin:left;
+  transition: transform .3s ease, background .3s ease;
+}
+.project-card:hover{
+  border-color: var(--brass);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.project-card:hover::before{ transform: scaleX(1); background: var(--brass); }
+.project-title{
+  font-family:var(--font-display); font-size:1.15rem; margin-bottom:.4rem;
+  transition: color .25s ease;
+}
+.project-card:hover .project-title{ color: var(--accent); }
+.project-desc{ color: var(--ink-soft); font-size:.93rem; flex-grow:1; }
+.project-tags{ display:flex; flex-wrap:wrap; gap:.4rem; margin: .9rem 0; }
+.tag{
+  font-size:.72rem; text-transform:none; background: var(--paper-alt);
+  border:1px solid var(--line); border-radius: 999px; padding:.15rem .6rem; color: var(--ink-soft);
+  transition: border-color .25s ease, color .25s ease;
+}
+[data-theme="dark"] .tag{ background: var(--paper); }
+.project-card:hover .tag{ border-color: var(--accent); color: var(--accent); }
+.project-links a{
+  font-size:.85rem; margin-right:1.2rem; text-decoration:none; color: var(--ink);
+  position: relative; padding-bottom: 2px;
+}
+.project-links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background: var(--brass);
+  transition: width .25s ease;
+}
+.project-links a:hover{ color: var(--accent); }
+.project-links a:hover::after{ width: 100%; }
+
+/* Achievements */
+.achieve-item{
+  display:flex; gap:.9rem; align-items:flex-start;
+  border:1px solid var(--line); border-radius: var(--radius); padding:1rem 1.1rem; height:100%;
+  background: var(--paper-alt);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+[data-theme="dark"] .achieve-item{ background: var(--paper); }
+.achieve-item:hover{
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-brass);
+  border-color: var(--brass);
+}
+.achieve-item i{
+  color: var(--brass); font-size:1.15rem; flex-shrink:0;
+  width:2.4rem; height:2.4rem; border-radius:50%;
+  background: var(--paper); border: 1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+}
+[data-theme="dark"] .achieve-item i{ background: var(--paper-alt); }
+.achieve-item:hover i{ transform: scale(1.1) rotate(-4deg); border-color: var(--brass); background: var(--paper-alt); }
+.achieve-item h3{ font-size:1rem; margin-bottom:.2rem; }
+.achieve-item p{ font-size:.87rem; color: var(--ink-soft); margin:0; }
+
+/* Contact */
+.contact-details li{ margin-bottom:.7rem; }
+.contact-details i{ color: var(--accent); margin-right:.6rem; width:1.2em; }
+
+#contactForm .form-control, #contactForm .form-select{
+  background: var(--paper); border-color: var(--line); color: var(--ink);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+#contactForm .form-control:focus, #contactForm .form-select:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 .2rem rgba(47, 111, 99, .15);
+}
+#contactForm .form-label{ font-weight:500; font-size:.9rem; }
+
+/* Footer */
+.site-footer{
+  border-top: 1px solid var(--line);
+  padding: 1.6rem 0;
+  font-size: .85rem;
+  color: var(--ink-soft);
+}
+.back-to-top{
+  border:1px solid var(--line); background:transparent; color:var(--ink);
+  width:36px; height:36px; border-radius:50%; cursor:pointer;
+}
+.back-to-top:hover{ border-color: var(--brass); color: var(--brass); }
+
+/* ==========================================================================
+   Responsive / media queries
+   ========================================================================== */
+@media (max-width: 991.98px){
+  .hero{ padding: 7rem 0 3rem; }
+  .theme-toggle{ margin: .8rem 0 0; }
+}
+
+@media (max-width: 575.98px){
+  .section{ padding: 3.2rem 0; }
+  .hero-actions{ flex-direction: column; align-items: stretch; }
+  .hero-actions .btn{ text-align:center; }
+}
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav" aria-label="Primary">
+  <div class="container">
+    <a class="navbar-brand" href="#home">SK<span class="brand-dot">.</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+      aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto" id="navList">
+        <li class="nav-item"><a class="nav-link" href="#home">01 Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">02 About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">03 Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">04 Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">05 Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#achievements">06 Achievements</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">07 Contact</a></li>
+      </ul>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <i class="bi bi-moon-stars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HOME / HERO ============ -->
+  <header id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-7">
+          <p class="hero-eyebrow">CS student, mostly figuring things out in the browser</p>
+          <h1 class="hero-name">Shailee Kakumanu</h1>
+          <p class="hero-tagline"><span id="typedText" aria-live="polite"></span><span class="cursor" aria-hidden="true"></span></p>
+          <p class="hero-lede">Half of what's on this page I built for class. The other half I built because
+            I got curious at 1am and didn't stop until it worked. Right now that's mostly JavaScript and
+            trying to figure out how much CSS Grid I actually need.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary-custom">See what I've built</a>
+            <a href="#contact" class="btn btn-outline-custom">Say hi</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="hero-card" aria-hidden="true">
+            <div class="hero-card-row"><span>Based in</span><strong id="heroLocation">Hyderabad, India</strong></div>
+            <div class="hero-card-row"><span>Doing</span><strong>Web dev, mostly front-end</strong></div>
+            <div class="hero-card-row"><span>Looking for</span><strong>An internship, honestly</strong></div>
+            <div class="hero-card-row"><span>Right now it's</span><strong id="liveClock">--:--:--</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section">
+    <div class="container">
+      <p class="section-index">02</p>
+      <h2 class="section-title">About me</h2>
+      <div class="row gy-4">
+        <div class="col-lg-7">
+          <p>I'm currently pursuing my B.E., and honestly most of what I actually
+            know about building for the web came from breaking things first and fixing them later.
+            I like HTML that still makes sense with the stylesheet turned off, and JavaScript that
+            doesn't try too hard to be clever.</p>
+          <p>Outside of coursework I'm slowly working through an accessibility reading list
+            that's longer than I'd like to admit, and spend a lot of my free time building the kind
+            of small projects that end up on this page.</p>
+          <ul class="about-facts list-unstyled">
+            <li><i class="bi bi-mortarboard" aria-hidden="true"></i> B.E., class of 2027</li>
+            <li><i class="bi bi-code-slash" aria-hidden="true"></i> A dozen or so projects, some better than others</li>
+          </ul>
+        </div>
+        <div class="col-lg-5">
+          <div class="quote-widget card-panel">
+            <h3 class="h6 mb-2">Random quote generator</h3>
+            <blockquote id="quoteBox" class="quote-text">Hit the button, it's pulling from a real API.</blockquote>
+            <p id="quoteAuthor" class="quote-author"></p>
+            <button id="quoteBtn" class="btn btn-outline-custom btn-sm" type="button">
+              <i class="bi bi-arrow-repeat" aria-hidden="true"></i> Give me another
+            </button>
+            <p id="quoteStatus" class="small text-muted mt-2" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education" class="section section-alt">
+    <div class="container">
+      <p class="section-index">03</p>
+      <h2 class="section-title">Education</h2>
+      <div class="table-responsive card-panel">
+        <table class="table align-middle mb-0" id="eduTable">
+          <caption class="visually-hidden">Academic history</caption>
+          <thead>
+            <tr>
+              <th scope="col">Year</th>
+              <th scope="col">Qualification</th>
+              <th scope="col">Institute</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- rows injected by JavaScript from the education array -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" class="section">
+    <div class="container">
+      <p class="section-index">04</p>
+      <h2 class="section-title">Skills</h2>
+      <div class="row g-4" id="skillsGrid">
+        <!-- skill cards injected by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <p class="section-index">05</p>
+      <h2 class="section-title">Projects</h2>
+      <p>A few of these were assignments. A few I built purely because I wanted to see if I could.</p>
+
+      <div class="filter-bar" id="filterBar" role="group" aria-label="Filter projects by technology">
+        <button class="filter-btn active" data-filter="all" type="button">All</button>
+        <!-- more filter buttons injected by JavaScript -->
+      </div>
+
+      <div class="row g-4" id="projectsGrid">
+        <!-- project cards injected by JavaScript -->
+      </div>
+      <p id="noProjectsMsg" class="text-muted d-none mt-3">No projects match this filter yet.</p>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section id="achievements" class="section">
+    <div class="container">
+      <p class="section-index">06</p>
+      <h2 class="section-title">Achievements &amp; certifications</h2>
+      <div class="row g-3" id="achievementsList">
+        <!-- injected by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <p class="section-index">07</p>
+      <h2 class="section-title">Get in touch</h2>
+      <div class="row gy-4">
+        <div class="col-lg-5">
+          <p>Have a project, an internship opening, or just a question about something on this page?
+            My inbox is open. Fair warning: the form below won't let you send it until everything's
+            actually filled in properly. I got tired of half-finished messages.</p>
+          <ul class="list-unstyled contact-details">
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> shaileekakumanu@gmail.com</li>
+            <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Hyderabad, Telangana, India</li>
+            <li><i class="bi bi-linkedin" aria-hidden="true"></i> linkedin.com/in/shaileekakumanu</li>
+            <li><i class="bi bi-github" aria-hidden="true"></i> github.com/shaileekakumanu</li>
+          </ul>
+        </div>
+        <div class="col-lg-7">
+          <form id="contactForm" class="card-panel needs-validation" novalidate aria-describedby="formHint">
+            <p id="formHint" class="small text-muted">Every field's required — it'll tell you what's missing before it lets you send anything.</p>
+
+            <div class="mb-3">
+              <label for="nameInput" class="form-label">Full name</label>
+              <input type="text" class="form-control" id="nameInput" name="name" minlength="2" required>
+              <div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="emailInput" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="emailInput" name="email" required>
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="subjectInput" class="form-label">Subject</label>
+              <select class="form-select" id="subjectInput" name="subject" required>
+                <option value="" selected disabled>Choose a topic…</option>
+                <option value="internship">Internship opportunity</option>
+                <option value="collaboration">Project collaboration</option>
+                <option value="feedback">Feedback on my work</option>
+                <option value="other">Something else</option>
+              </select>
+              <div class="invalid-feedback">Please choose a subject.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="messageInput" class="form-label">Message</label>
+              <textarea class="form-control" id="messageInput" name="message" rows="4" minlength="10" required></textarea>
+              <div class="invalid-feedback">Please write at least 10 characters.</div>
+              <div class="form-text"><span id="charCount">0</span> characters</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom">
+              <i class="bi bi-send" aria-hidden="true"></i> Send message
+            </button>
+
+            <div id="formAlert" class="alert mt-3 d-none" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <p class="mb-0">&copy; 2026 Shailee Kakumanu. Hand-coded with HTML, CSS, Bootstrap and plain JavaScript — no framework, no build step, just files.</p>
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+'use strict';
+
+/* ==========================================================================
+   1. DATA — arrays of objects (ES6 variables, const, template literals)
+   ========================================================================== */
+const education = [
+  { year: '2023 – 2027', qualification: 'B.E.',          institute: 'Stanley College of Engineering and Technology for Women', score: 'CGPA 7.5 / 10' },
+  { year: '2021 – 2023', qualification: 'Intermediate',  institute: 'Sri Chaitanya',                              score: '89.9%' },
+  { year: '2020',        qualification: 'Secondary School', institute: 'Sanghamitra School',                     score: '87.6%' },
+];
+
+const skills = [
+  { name: 'HTML5 & CSS3',        level: 90, category: 'frontend' },
+  { name: 'JavaScript (ES6+)',   level: 82, category: 'frontend' },
+  { name: 'Bootstrap',           level: 88, category: 'frontend' },
+  { name: 'React (basics)',      level: 65, category: 'frontend' },
+  { name: 'Python',              level: 75, category: 'backend'  },
+  { name: 'SQL & MongoDB',       level: 70, category: 'backend'  },
+  { name: 'Git & GitHub',        level: 85, category: 'tools'    },
+  { name: 'Figma',               level: 60, category: 'tools'    },
+];
+
+const projects = [
+  {
+    title: 'Swasthya AI — Healthcare Report Parsing',
+    desc: 'A FastAPI backend that turns lab reports (typed or scanned) into structured data. It extracts tables and text with pdfplumber, falls back to PyMuPDF + Tesseract OCR with OpenCV preprocessing for scanned pages, then uses regex-based parsing to pull out each test\u2019s name, value, unit, and reference range. Every result gets auto-flagged High/Low/Abnormal, and a rule-based explanation layer (with an optional OpenAI fallback) gives plain-language context for common tests like TSH, HbA1c, platelets, and hemoglobin, always with a "talk to a doctor" disclaimer attached.',
+    tags: ['Python', 'FastAPI', 'OCR', 'AI/ML'],
+    demo: '#', code: '#',
+  },
+  {
+    title: 'Brain Tumor Detection using AI',
+    desc: 'Proposed a lightweight CNN-based system aimed at village-level clinics with limited hardware. Looked at MobileNet and SqueezeNet for the lightweight angle, pruning to shrink the model further, Grad-CAM/SHAP for explainability, and federated learning so clinics could train together without sharing patient data.',
+    tags: ['AI/ML', 'Python'],
+    demo: '#', code: '#',
+  },
+  {
+    title: 'House Price Prediction',
+    desc: 'A regression project using Support Vector Regression on features like OverallQual, GrLivArea, GarageCars, TotalBsmtSF, FullBath, and YearBuilt. Landed around RMSE 60,896, R\u00B2 0.5165, and MAE 30,842 after tuning.',
+    tags: ['Python', 'Machine Learning'],
+    demo: '#', code: '#',
+  },
+  {
+    title: 'Car Web/Data Project',
+    desc: 'A web-scraping project (car_web_scraped) that pulls car listing data from the web to build a usable dataset for further analysis.',
+    tags: ['Python', 'Web Scraping'],
+    demo: '#', code: '#',
+  },
+  {
+    title: 'Generative AI & Computer Vision Visualizations',
+    desc: 'A set of interactive visualizations built to make generative AI concepts easier to actually see, walking through how CNNs, GANs, and VAEs work step by step instead of just reading about them.',
+    tags: ['AI/ML', 'Visualization'],
+    demo: '#', code: '#',
+  },
+];
+
+const achievements = [
+  { icon: 'bi-bar-chart',       title: 'Data Analytics on Excel',       desc: 'Course completed on Mindluster.' },
+  { icon: 'bi-cpu',             title: 'Computer Organization',         desc: 'Course completed on Mindluster.' },
+  { icon: 'bi-shield-lock',     title: 'Cryptography',                  desc: 'Course completed on Mindluster.' },
+  { icon: 'bi-calculator',      title: 'Discrete Mathematics',          desc: 'Course completed on Mindluster.' },
+  { icon: 'bi-diagram-3',       title: 'DevOps Basics',                 desc: 'Course completed on Mindluster.' },
+  { icon: 'bi-code-slash',      title: 'Python Programming',            desc: 'Course completed on Udemy.' },
+  { icon: 'bi-bar-chart-line',  title: 'Basics of R Programming',       desc: 'Course completed on Udemy.' },
+  { icon: 'bi-clock-history',   title: 'Time Management',               desc: 'A short mini-course on Udemy.' },
+  { icon: 'bi-terminal',        title: 'Linux Tutorial and Projects',   desc: 'Course completed on Udemy.' },
+  { icon: 'bi-graph-up',        title: 'Basics of R Software',          desc: 'Course completed on Udemy.' },
+];
+
+/* ==========================================================================
+   2. HELPERS — arrow functions, DOM manipulation
+   ========================================================================== */
+const $  = (selector, scope = document) => scope.querySelector(selector);
+const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+const createEl = (tag, className, html) => {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (html !== undefined) el.innerHTML = html;
+  return el;
+};
+
+/* ==========================================================================
+   3. RENDER FUNCTIONS — loops, template literals, conditions
+   ========================================================================== */
+function renderEducation() {
+  const tbody = $('#eduTable tbody');
+  const rows = education.map(row => `
+    <tr>
+      <td>${row.year}</td>
+      <td>${row.qualification}</td>
+      <td>${row.institute}</td>
+      <td>${row.score}</td>
+    </tr>`).join('');
+  tbody.innerHTML = rows;
+}
+
+function renderSkills() {
+  const grid = $('#skillsGrid');
+  grid.innerHTML = '';
+  skills.forEach(skill => {
+    const col = createEl('div', 'col-sm-6 col-lg-3');
+    col.innerHTML = `
+      <div class="skill-card">
+        <div class="skill-card-head">
+          <span>${skill.name}</span>
+          <span>${skill.level}%</span>
+        </div>
+        <div class="skill-bar-track">
+          <div class="skill-bar-fill" data-level="${skill.level}"></div>
+        </div>
+      </div>`;
+    grid.appendChild(col);
+  });
+}
+
+// Animate skill bars once they scroll into view (IntersectionObserver + DOM manipulation)
+function animateSkillBars() {
+  const bars = $$('.skill-bar-fill');
+  if (!('IntersectionObserver' in window)) {
+    bars.forEach(bar => (bar.style.width = `${bar.dataset.level}%`));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = `${entry.target.dataset.level}%`;
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  bars.forEach(bar => observer.observe(bar));
+}
+
+function projectCard(project) {
+  const tags = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+  return `
+    <div class="col-sm-6 col-lg-4 project-item" data-tags="${project.tags.join(',').toLowerCase()}">
+      <div class="project-card">
+        <h3 class="project-title">${project.title}</h3>
+        <p class="project-desc">${project.desc}</p>
+        <div class="project-tags">${tags}</div>
+        <div class="project-links">
+          <a href="${project.demo}">Live demo</a>
+          <a href="${project.code}">Source code</a>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderProjects(list = projects) {
+  const grid = $('#projectsGrid');
+  const emptyMsg = $('#noProjectsMsg');
+  grid.innerHTML = list.map(projectCard).join('');
+  emptyMsg.classList.toggle('d-none', list.length > 0);
+}
+
+function renderFilterButtons() {
+  const bar = $('#filterBar');
+  // Build a unique, sorted tag list from every project (Set + spread = ES6 features)
+  const allTags = [...new Set(projects.flatMap(p => p.tags))].sort();
+  allTags.forEach(tag => {
+    const btn = createEl('button', 'filter-btn', tag);
+    btn.type = 'button';
+    btn.dataset.filter = tag.toLowerCase();
+    bar.appendChild(btn);
+  });
+}
+
+function renderAchievements() {
+  const list = $('#achievementsList');
+  list.innerHTML = achievements.map(item => `
+    <div class="col-sm-6 col-lg-4">
+      <div class="achieve-item">
+        <i class="bi ${item.icon}" aria-hidden="true"></i>
+        <div>
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ==========================================================================
+   4. PROJECT FILTERING — event delegation, conditions
+   ========================================================================== */
+function initFilters() {
+  const bar = $('#filterBar');
+  bar.addEventListener('click', event => {
+    const btn = event.target.closest('.filter-btn');
+    if (!btn) return;
+
+    $$('.filter-btn', bar).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+    const filtered = filter === 'all'
+      ? projects
+      : projects.filter(p => p.tags.map(t => t.toLowerCase()).includes(filter));
+
+    renderProjects(filtered);
+  });
+}
+
+/* ==========================================================================
+   5. TYPING EFFECT — functions, setTimeout, loops
+   ========================================================================== */
+function typeEffect(el, phrases, { typeSpeed = 60, pauseTime = 1400 } = {}) {
+  if (!el) return;
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  const tick = () => {
+    const current = phrases[phraseIndex];
+    el.textContent = deleting
+      ? current.slice(0, charIndex--)
+      : current.slice(0, charIndex++);
+
+    let delay = deleting ? typeSpeed / 2 : typeSpeed;
+
+    if (!deleting && charIndex === current.length + 1) {
+      deleting = true;
+      delay = pauseTime;
+    } else if (deleting && charIndex === 0) {
+      deleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      delay = 300;
+    }
+    setTimeout(tick, delay);
+  };
+  tick();
+}
+
+/* ==========================================================================
+   6. LIVE CLOCK
+   ========================================================================== */
+function startClock() {
+  const clockEl = $('#liveClock');
+  if (!clockEl) return;
+  const update = () => {
+    clockEl.textContent = new Date().toLocaleTimeString('en-IN', { hour12: true });
+  };
+  update();
+  setInterval(update, 1000);
+}
+
+/* ==========================================================================
+   7. THEME TOGGLE — localStorage, event handling
+   ========================================================================== */
+function initThemeToggle() {
+  const toggle = $('#themeToggle');
+  const root = document.documentElement;
+  const icon = toggle.querySelector('i');
+
+  const applyTheme = theme => {
+    root.setAttribute('data-theme', theme);
+    toggle.setAttribute('aria-pressed', theme === 'dark');
+    toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    icon.className = theme === 'dark' ? 'bi bi-sun' : 'bi bi-moon-stars';
+  };
+
+  const saved = localStorage.getItem('portfolio-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(saved);
+
+  toggle.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('portfolio-theme', next);
+  });
+}
+
+/* ==========================================================================
+   8. NAVBAR — active link on scroll, back-to-top
+   ========================================================================== */
+function initNavHighlight() {
+  const links = $$('#navList .nav-link');
+  const sections = links
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const setActive = () => {
+    const scrollPos = window.scrollY + 120;
+    let currentId = sections[0]?.id;
+    sections.forEach(section => {
+      if (section.offsetTop <= scrollPos) currentId = section.id;
+    });
+    links.forEach(link => {
+      link.classList.toggle('active-link', link.getAttribute('href') === `#${currentId}`);
+    });
+  };
+  document.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+}
+
+function initBackToTop() {
+  const btn = $('#backToTop');
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
+
+// Adds a shadow to the fixed navbar once the page has scrolled a little
+function initNavShadow() {
+  const nav = $('#mainNav');
+  const toggle = () => nav.classList.toggle('is-scrolled', window.scrollY > 12);
+  document.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+}
+
+// Fades each section's panels in as they scroll into view
+function initScrollReveal() {
+  const targets = $$('.card-panel, .skill-card, .project-card, .achieve-item, .hero-card');
+  targets.forEach(el => el.classList.add('reveal'));
+
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  targets.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   9. FETCH API — async data retrieval with graceful fallback
+   ========================================================================== */
+const FALLBACK_QUOTES = [
+  { content: 'The details are not the details. They make the design.', author: 'Charles Eames' },
+  { content: 'Code is like humor. When you have to explain it, it’s bad.', author: 'Cory House' },
+  { content: 'First, solve the problem. Then, write the code.', author: 'John Johnson' },
+];
+
+async function fetchQuote() {
+  const box = $('#quoteBox');
+  const author = $('#quoteAuthor');
+  const status = $('#quoteStatus');
+  const btn = $('#quoteBtn');
+
+  btn.disabled = true;
+  status.textContent = 'Hang on, grabbing one…';
+
+  try {
+    const response = await fetch('https://dummyjson.com/quotes/random');
+    if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+    const data = await response.json();
+    box.textContent = `“${data.quote}”`;
+    author.textContent = `— ${data.author}`;
+    status.textContent = 'That one just came in live from the API.';
+  } catch (error) {
+    const random = FALLBACK_QUOTES[Math.floor(Math.random() * FALLBACK_QUOTES.length)];
+    box.textContent = `“${random.content}”`;
+    author.textContent = `— ${random.author}`;
+    status.textContent = "Couldn't reach the API, so here's one I had saved.";
+    console.warn('Quote fetch failed, using fallback:', error);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+/* ==========================================================================
+   10. CONTACT FORM VALIDATION — conditions, regex, Bootstrap validation UI
+   ========================================================================== */
+function initContactForm() {
+  const form = $('#contactForm');
+  const messageInput = $('#messageInput');
+  const charCount = $('#charCount');
+  const alertBox = $('#formAlert');
+
+  messageInput.addEventListener('input', () => {
+    charCount.textContent = messageInput.value.length;
+  });
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const email = $('#emailInput');
+    let valid = form.checkValidity();
+
+    // Extra custom rule on top of built-in HTML5 validation
+    if (email.value && !emailPattern.test(email.value)) {
+      email.setCustomValidity('invalid');
+      valid = false;
+    } else {
+      email.setCustomValidity('');
+    }
+
+    form.classList.add('was-validated');
+
+    if (!valid) {
+      alertBox.className = 'alert alert-danger mt-3';
+      alertBox.textContent = "A couple of fields still need fixing — check what's highlighted below.";
+      alertBox.classList.remove('d-none');
+      return;
+    }
+
+    // Simulated successful submission (no backend attached in this demo)
+    const name = $('#nameInput').value.trim();
+    alertBox.className = 'alert alert-success mt-3';
+    alertBox.textContent = `Thanks, ${name} — that went through fine. I'll get back to you soon.`;
+    alertBox.classList.remove('d-none');
+
+    form.reset();
+    form.classList.remove('was-validated');
+    charCount.textContent = '0';
+  });
+}
+
+/* ==========================================================================
+   11. INIT — DOMContentLoaded, event listeners
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  renderEducation();
+  renderSkills();
+  renderFilterButtons();
+  renderProjects();
+  renderAchievements();
+
+  animateSkillBars();
+  initFilters();
+  initThemeToggle();
+  initNavHighlight();
+  initNavShadow();
+  initBackToTop();
+  initContactForm();
+  startClock();
+  initScrollReveal();
+
+  typeEffect($('#typedText'), [
+    'I write a lot of divs.',
+    'I break things, then fix them.',
+    'I finish projects at 1am.',
+  ]);
+
+  $('#quoteBtn').addEventListener('click', fetchQuote);
+});
+
+</script>
+</body>
+</html>
